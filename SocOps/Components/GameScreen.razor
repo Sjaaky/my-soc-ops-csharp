@@ -1,36 +1,36 @@
 @using SocOps.Models
 
-<div class="flex flex-col min-h-full bg-gray-50">
-    <!-- Header -->
-    <header class="flex items-center justify-between p-3 bg-white border-b border-gray-200">
-        <button
-            @onclick="OnReset"
-            class="text-gray-500 text-sm px-3 py-1.5 rounded active:bg-gray-100">
-            ← Back
-        </button>
-        <h1 class="font-bold text-gray-900">Soc Ops</h1>
-        <div class="w-16"></div>
-    </header>
+<div class="ocean-shell ocean-page flex flex-col min-h-full">
+    <div class="ocean-game-card ocean-hero flex flex-col min-h-full">
+        <header class="ocean-topbar">
+            <button
+                @onclick="OnReset"
+                class="ocean-button-secondary transition-all">
+                ← Shore
+            </button>
 
-    <!-- Instructions -->
-    <p class="text-center text-gray-500 text-sm py-2 px-4">
-        Tap a square when you find someone who matches it.
-    </p>
+            <div class="text-center">
+                <div class="ocean-badge">Board live</div>
+                <h1 class="ocean-heading">Coastal Connections</h1>
+                <p class="ocean-copy">Mark each square as you meet someone who fits the prompt. The center is already yours.</p>
+            </div>
 
-    <!-- Bingo indicator -->
-    @if (HasBingo)
-    {
-        <div class="bg-amber-100 text-amber-800 text-center py-2 font-semibold text-sm">
-            🎉 BINGO! You got a line!
+            <div class="ocean-badge">5 in a row</div>
+        </header>
+
+        @if (HasBingo)
+        {
+            <div class="ocean-bingo-banner">
+                Sun on the water: you hit bingo. Keep mingling and see how many lines you can catch.
+            </div>
+        }
+
+        <div class="ocean-board-shell flex-1 flex items-center justify-center">
+            <BingoBoard
+                Board="@Board"
+                WinningSquareIds="@WinningSquareIds"
+                OnSquareClick="@OnSquareClick" />
         </div>
-    }
-
-    <!-- Board -->
-    <div class="flex-1 flex items-center justify-center p-3">
-        <BingoBoard
-            Board="@Board"
-            WinningSquareIds="@WinningSquareIds"
-            OnSquareClick="@OnSquareClick" />
     </div>
 </div>
 
